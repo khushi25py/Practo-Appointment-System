@@ -1,0 +1,63 @@
+body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+.container {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin:80px;
+    }
+
+.card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      width: 260px;
+      transition: transform 0.3s ease;
+    }
+
+.card:hover {
+      transform: translateY(-5px);
+    }
+
+.card i {
+      font-size: 3rem;
+      color: #0078d4;
+      margin-bottom: 1rem;
+    }
+
+.card h3 {
+      margin-bottom: 0.5rem;
+      color: #0078d4;
+    }
+
+.card p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+.card .btn {
+      display: block;
+      background: #0078d4;
+      color: white;
+      padding: 0.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0.4rem 0;
+    }
+
+.card .btn.signup {
+      background: #00b894;
+    }

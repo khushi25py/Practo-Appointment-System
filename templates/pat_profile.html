@@ -1,0 +1,131 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Patient Profile</title>
+        <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+        }
+        .card {
+            background: white;
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        .detail {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        .detail strong {
+            color: #444;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .logout-btn {
+            background-color: #dc3545;
+            margin-bottom: 15px;
+        }
+        .logout-btn:hover {
+            background-color: #b02a37;
+        }
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        }
+        th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+        background-color: #fafafa;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px 16px;
+            text-align: left;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="card">
+        <form action="/logout-patient" methods="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+        <h1>Patient profile</h1>
+        <div class="detail"><strong>Name:</strong> {{ pat_details.name }}</div>
+        <div class="detail"><strong>Email:</strong> {{ pat_details.email }}</div>
+        <div class="detail"><strong>Phone Number:</strong> {{ pat_details.phone_number }}</div>
+        <div class="detail"><strong>Gender:</strong> {{ pat_details.gender }}</div>
+        <br>
+        <br>
+        <a href="{% url 'schedule_appointment' %}" class="btn btn-primary">Schedule Appointment</a>
+        <a onclick="toggleAppointments()" class="btn btn-primary">View Appointments</a>
+        <div id="appointmentsSection" style="display:none;margin-top: 20px;">
+            <h2>Appointments</h2>
+            {% if appointments %}
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Specialty</th>
+                        <th>Fee</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.doctor_id.name }}</td>
+                        <td>{{ appointment.doctor_id.specialty.specialty_name }}</td>
+                        <td>{{ appointment.doctor_id.fee }}</td>
+                        <td>{{ appointment.appointment_date|date:"M d,Y-H:i" }}</td>
+                        <td>{{ appointment.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            {% else %}
+                <p>No appointments scheduled.</p>
+            {% endif %}
+        </div>
+        <script>
+            function toggleAppointments() {
+                var section = document.getElementById('appointmentsSection');
+                if (section.style.display === 'none' || section.style.display === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            }
+        </script>
+    </body>
+</html>

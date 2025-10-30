@@ -1,0 +1,36 @@
+{%load static%}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block page_title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        {% include 'includes/header.html'%}
+        <hr>
+        {% block content %}
+
+        {% endblock %}
+        <hr>
+        {% include 'includes/footer.html' %}
+        <script src="{% static 'js/script.js' %}"></script>
+        <script>
+
+            function showForgotPassword() {
+                alert("This feature is not implemented yet.");
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("toggleAppointmentsBtn").addEventListener("click", function ()  {
+                    console.log("Toggle button clicked");
+                    //document.getElementById("appointments").classList.toggle("hidden");
+                   
+                });
+            });
+        </script>
+        {% block extra_js %}
+        {% endblock %}
+        {% block extraCss %}
+        {% endblock %}
+    </body>
+</html>

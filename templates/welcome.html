@@ -1,0 +1,33 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block page_title %}Welcome to Practo{% endblock %}
+{% block content %}
+
+
+<div id="content">
+  <div class="header">
+    <section class="hero">
+      <h1>Your Health, Our Priority</h1>
+      <p>Book appointments, consult doctors online, and manage your health effortlessly.</p>
+    </section>
+
+    <section class="features">
+      <div class="card">
+        <h3>Consult Online</h3>
+        <p>Talk to certified doctors anytime, anywhere.</p>
+      </div>
+      <div class="card">
+        <h3>Book Lab Tests</h3>
+        <p>Convenient at-home sample collection and quick results.</p>
+      </div>
+      <div class="card">
+        <h3>Health Records</h3>
+        <p>Access all your health records securely in one place.</p>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}
+{%block extraCss%}
+  <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+{%endblock%}

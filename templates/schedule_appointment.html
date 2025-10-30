@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Appointment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        select, input[type="text"], input[type="datetime-local"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .appointments-section {
+            max-width: 900px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eaeaea;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .status-scheduled {
+            font-weight: bold;
+            color: green;
+        }
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Schedule Appointment</h2>
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Schedule Appointment</button>
+</form>
+
+    
+    
+
+
+<script>
+    document.getElementById("id_specialist").addEventListener("change", function() {
+        var selectedSpecialty = this.value;
+        var doctorSelect = document.getElementById("id_doctor_id");
+        fetch("{% url 'get_doctors' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: JSON.stringify({ specialty_id: selectedSpecialty })
+        })
+        .then(response => response.json())
+        .then(data => {
+            doctorSelect.innerHTML = '<option value="">Select Doctor</option>';
+            data.doctors.forEach(function(doctor) {
+                var option = document.createElement("option");
+                option.value = doctor.id;
+                option.textContent = doctor.name;
+                doctorSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching doctors:', error);
+        });
+    });
+</script>
+</body>
+</html>

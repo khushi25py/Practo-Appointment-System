@@ -1,0 +1,93 @@
+{%extends 'includes/baseOne.html'%}
+{% block page_title %}Doctor Registration{% endblock %}
+{%load static%}
+{% block content %}
+  <div id="content">
+      <button onclick="history.back()"style="position: absolute;
+        top: 80px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        color: #333;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: background-color 0.3s;">← Back</button>
+
+      <div class="form-container">
+        <h2>Doctor Registration</h2>
+        <form action="/submit-doctor-register" method="POST" id="doc_form">
+          {% csrf_token %}
+          
+          <label for="name">Full Name:</label>
+          <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+
+          <label for="qualification">Qualification:</label>
+          <input type="text" name="qualification" id="qualification" placeholder="Enter Your Qualification" required>
+
+          <label for="specialty">Specialist Area:</label>
+          <select name="specialty" id="specialty" required>
+            {% for i in specialties %}
+              <option value="{{ i.id }}">{{ i.specialty_name }}</option>
+            {% endfor %}
+          </select><br>
+
+          <label for="year_of_experience">Year of Experience</label>
+          <select name="year_of_experience" id="year_of_experience" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+          </select>
+
+          <label for="phone_no">Phone Number:</label>
+          <input type="text" name="phone_no" id="phone_no" placeholder="Enter Your Phone Number" required>
+
+          <label>Gender:</label>
+          <div class="gender-group">
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Others"> Others
+          </div>
+
+          <label for="fee">Consultation Fee:</label>
+          <input type="text" name="fee" id="fee" placeholder="Enter Consultation Fee" required>
+
+          <label for="time">Consulting Time:</label>
+          <input type="time" name="time" id="time" required>
+
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+
+          <input type="button" value="Register" onclick="register_doc()">
+        </form>
+      </div>
+  </div>
+{% endblock %}
+{%block extraCss%}
+  <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dr_regis.css' %}">
+
+{%endblock%}
+  <script src="{% static 'js/script.js' %}"></script>
+

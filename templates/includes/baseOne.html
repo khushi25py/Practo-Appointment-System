@@ -1,0 +1,22 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block page_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% block extraCss %}{% endblock %}
+  </head>
+  <body>
+    {% include 'includes/headerOne.html' %}
+    <hr />
+    {% block content %}{% endblock %}
+    <hr />
+    {% include 'includes/footer.html' %}
+
+    {% block extra_js %}
+      <script src="{% static 'js/script1.js' %}" defer ></script>
+      <script src="{% static 'js/script2.js' %}" defer ></script>
+    {% endblock %}
+  </body>
+</html>

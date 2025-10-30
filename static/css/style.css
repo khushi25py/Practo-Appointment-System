@@ -1,0 +1,84 @@
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto; /* ✅ Enables scroll if needed */
+}
+
+/* Patient Form Styling */
+form#pat_form {
+    background-color: #ffffff;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+form#pat_form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input Fields */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Radio Button Section */
+input[type="radio"] {
+    margin-right: 6px;
+}
+
+.gender {
+    margin-right: 10px;
+    margin-bottom: 12px;
+}
+
+/* Submit Button */
+input[type="button"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 600px) {
+    form#pat_form {
+        padding: 20px;
+        width: 95%;
+    }
+}

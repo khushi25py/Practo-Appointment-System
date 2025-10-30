@@ -1,0 +1,51 @@
+{% extends 'includes/baseOne.html' %}
+{% block page_title %}Patient Registration {% endblock %}
+{% load static %}
+{% block content %}
+<div id="content">
+    <div class="form-container">
+        <button onclick="history.back()" style="position: absolute;
+            top: 80px;
+            left: 20px;
+            background-color: #f0f0f0;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;">← Back</button>
+        <form action="/submit-patient-register" method="POST" id="pat_form">
+            {% csrf_token %}
+            <h2>Patient Registration Form</h2>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter Your Name" required><br><br>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Your Email" required><br><br>
+
+            <label for="phone_number">Phone Number</label>
+            <input type="text" id="phone_number" name="phone_number" placeholder="Enter Your Phone Number"required><br><br>
+
+            <label for="gender">Gender:</label><br>
+            <input type="radio" name="gender" value="Male" class="gender">Male<br>
+            <input type="radio" name="gender" value="Female" class="gender">Female<br>
+            <input type="radio" name="gender" value="Others" class="gender">Others<br>
+            <br>
+
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age" placeholder="Enter Your Age" required><br><br>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Your Password"required>
+
+            <input type="button" value="Register" onclick="register_pat()">
+        </form>
+    </div>
+</div>
+{% endblock %}
+{%block extraCss%}
+  <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+{%endblock%}
+<script src="{% static 'js/script.js' %}"></script>

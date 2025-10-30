@@ -1,0 +1,74 @@
+{% extends 'includes/baseOne.html' %}
+{% block page_title %}Doctor Profile {% endblock %}
+{% load static %}
+{% block content %}
+    <div id="content">
+        <div class="container">
+            <form action="/logout-doctor" method="POST">
+                {% csrf_token %}
+                <button class="logout-btn">Logout</button>
+            </form>
+
+            <div class="profile-card">
+            <h1>Doctor Profile</h1>
+            <p><b>Name:</b> {{ doc_details.name }}</p>
+            <p><b>Email:</b> {{ doc_details.email }}</p>
+            <p><b>Qualification:</b> {{ doc_details.qualification }}</p>
+            <p><b>Specialty:</b> {{ doc_details.specialty }}</p>
+            </div>
+        
+            <button onclick="toggleAppointmentsBtn()">Check Appointments</button>
+
+
+        <div id="appointments" class="hidden">
+            {% if appointments %}
+                {% for app in appointments %}
+                    <div class="appointment-card">
+                        <p><b>Patient:</b> {{ app.patient_id.name }}</p>
+                        <p><b>Issue:</b> {{ app.issue }}</p>
+                        <p><b>Date:</b> {{ app.appointment_date }}</p>
+                        <p><b>Status:</b> {{ app.status }}</p>
+
+                        {% if app.status == "Applied" %}
+                            <form method="post" action="{% url 'accept_appointment' app.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button class="accept-btn" type="submit">Accept</button>
+                            </form>
+
+                            <form method="post" action="{% url 'reject_appointment' app.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button class="reject-btn" type="submit">Reject</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No appointments yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{%block extraCss%}
+  <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dr_profile.css' %}">
+{%endblock%}
+{% block extra_js %}
+<script>
+function toggleAppointmentsBtn() {
+    var x = document.getElementById("appointments");
+    if (x.classList.contains("hidden")) {
+        x.classList.remove("hidden");
+    } else {
+        x.classList.add("hidden");
+    }
+}
+</script>
+{% endblock %}
+
+
+
+
+
+

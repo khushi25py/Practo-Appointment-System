@@ -1,0 +1,43 @@
+{%extends 'includes/base.html'%}
+{% block page_title %}Welcome to Practo{% endblock %}
+{%load static%}
+{% block content %}
+  <div id="content">
+    <button onclick="history.back()" style="position: absolute;
+            top: 80px;
+            left: 20px;
+            background-color: #f0f0f0;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;">← Back
+    </button> 
+    <div class="container">
+      <div class="card">
+          <i class="fas fa-user-md"></i>
+          <h3>Doctor</h3>
+          <p>Access your dashboard, appointments, and patient records.</p>
+          <a href="/doctor-login" class="btn">Login</a>
+          <a href="/doctor-register" class="btn signup">New here? Sign up</a>
+      </div>
+
+      <div class="card">
+          <i class="fas fa-user-injured"></i>
+          <h3>Patient</h3>
+          <p>Book appointments, view prescriptions, and consult doctors.</p>
+          <a href="/patient-login" class="btn">Login</a>
+          <a href="/patient-register" class="btn signup">New here? Sign up</a>
+      </div>
+    </div>
+  </div>  
+{% endblock %}
+{%block extraCss%}
+  <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/newwelcom.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+{%endblock%}
